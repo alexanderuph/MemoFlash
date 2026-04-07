@@ -30,7 +30,8 @@ android:background="#FFFFFF">
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_arrow"
-            app:tint="#FFFFFF" />
+            app:tint="#FFFFFF"
+            android:elevation="4dp"/>
 
         <ImageView
             android:id="@+id/imageView3"
@@ -138,6 +139,7 @@ android:background="#FFFFFF">
                 android:textColor="#FFFFFF"
                 app:insetBottom="0dp"
                 app:insetTop="0dp"
+                android:elevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
