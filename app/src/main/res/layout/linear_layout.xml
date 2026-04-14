@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="#FB0505"/>
+        android:background="#FB0505" />
 
     <LinearLayout
 
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#00BCD4"/>
+            android:background="#00BCD4" />
 
         <View
             android:layout_width="match_parent"

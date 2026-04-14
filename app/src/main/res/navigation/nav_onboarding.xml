@@ -4,19 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_onboarding"
     app:startDestination="@id/fragment_login">
-
     <fragment
         android:id="@+id/fragment_login"
         android:name="com.example.memoflash.fragment_login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_fragment_login_to_fragment_register"
             app:destination="@id/fragment_register" />
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_recuperar"
+            app:destination="@id/fragment_recuperar" />
     </fragment>
     <fragment
         android:id="@+id/fragment_register"
         android:name="com.example.memoflash.fragment_register"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_fragment_register_to_fragment_infoPersonal"
+            app:destination="@id/fragment_infoPersonal" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_infoPersonal"
+        android:name="com.example.memoflash.fragment_registro_datos"
+        android:label="fragment_infoPersonal"
+        tools:layout="@layout/fragment_registro_datos"/>
+    <fragment
+        android:id="@+id/fragment_recuperar"
+        android:name="com.example.memoflash.fragment_restablecimiento"
+        android:label="fragment_recuperar"
+        tools:layout="@layout/fragment_restablecimiento"/>
 </navigation>
