@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoFlash">
         <activity
+            android:name=".home.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MemoFlash.Home" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -23,3 +27,5 @@
     </application>
 
 </manifest>
+
+

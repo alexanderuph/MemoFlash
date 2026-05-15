@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/nav_home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/studyFragment">
 
+    <fragment
+        android:id="@+id/studyFragment"
+        android:name="com.example.memoflash.home.study.StudyFragment"
+        android:label="@string/nav_study"
+        tools:layout="@layout/fragment_study" />
+
+    <fragment
+        android:id="@+id/decksFragment"
+        android:name="com.example.memoflash.home.decks.DecksFragment"
+        android:label="@string/nav_decks"
+        tools:layout="@layout/fragment_decks" />
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.memoflash.home.account.AccountFragment"
+        android:label="@string/nav_account"
+        tools:layout="@layout/fragment_account" />
 </navigation>
+

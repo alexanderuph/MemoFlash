@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contenedorAzul"
@@ -22,6 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
             android:padding="4dp"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +35,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnBack"
             android:src="@drawable/ic_memoflash_premium" />
@@ -49,7 +50,7 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:text="Recuperar contraseña"
+            android:text="@string/recover_password_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoRecuperar" />
@@ -63,7 +64,7 @@
             android:layout_marginEnd="16dp"
             android:textColor="#B3FFFFFF"
             android:textSize="14sp"
-            android:text="Ingresa el correo electrónico asociado a tu cuenta. Te enviaremos un código de seguridad para restablecer tu acceso."
+            android:text="@string/recover_password_instructions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTituloRecuperar" />
@@ -91,39 +92,49 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:text="Correo Electrónico"
+                android:text="@string/email_label"
                 android:textColor="#0F172A"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editCorreoRecuperar"
+                style="@style/MemoInputLayout"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="ejemplo@correo.com"
-                android:inputType="textEmailAddress"
-                android:drawableStart="@android:drawable/ic_dialog_email"
-                android:drawablePadding="8dp"
+                android:hint="@string/sample_email"
+                app:boxBackgroundMode="outline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblCorreo" />
+                app:layout_constraintTop_toBottomOf="@+id/lblCorreo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/MemoInputText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
+                    android:drawableStart="@android:drawable/ic_dialog_email"
+                    android:drawablePadding="8dp"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnviarInstrucciones"
+                style="@style/MemoPrimaryButton"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="#2563EB"
-                android:text="Enviar código de recuperación"
+                android:text="@string/send_recovery_code"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:minHeight="0dp"
@@ -139,7 +150,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:text="Volver a Iniciar Sesión"
+                android:text="@string/back_to_sign_in"
                 android:textColor="#2563EB"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -151,3 +162,5 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
