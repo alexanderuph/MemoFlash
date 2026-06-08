@@ -46,7 +46,10 @@ class StudyFragment : Fragment(R.layout.fragment_study) {
                         is ResponseService.Success -> {
                             val decks = state.data.take(4)
                             adapter.submitList(decks)
-                            binding.txtCardsReady.text = state.data.sumOf { it.cards.size }.toString()
+                            binding.txtCardsReady.text = getString(
+                                R.string.number_format,
+                                state.data.sumOf { it.cards.size }
+                            )
                             binding.txtEmptyStudy.visibility =
                                 if (decks.isEmpty()) View.VISIBLE else View.GONE
                         }

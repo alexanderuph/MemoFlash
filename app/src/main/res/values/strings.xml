@@ -39,26 +39,9 @@
     <string name="upload_file">Subir archivo</string>
     <string name="cards_ready_count">24</string>
     <string name="cards_ready_label">tarjetas listas</string>
-    <string name="mastery_percent">82%</string>
-    <string name="mastery_label">dominio actual</string>
-    <string name="suggested_card">Tarjeta sugerida</string>
-    <string name="question_label">Pregunta</string>
-    <string name="suggested_question">¿Qué hace MemoFlash después de subir un archivo?</string>
-    <string name="answer_label">Respuesta</string>
-    <string name="suggested_answer">Analiza el contenido, detecta conceptos clave y genera tarjetas de estudio para repasar.</string>
-    <string name="study_now">Estudiar ahora</string>
     <string name="decks_title">Mazos de estudio</string>
     <string name="decks_subtitle">Organiza tus tarjetas por archivo, materia o examen.</string>
-    <string name="new_from_file">Nuevo desde archivo</string>
-    <string name="new_from_file_description">Sube PDF, apuntes o documentos y crea un mazo automáticamente.</string>
     <string name="create_deck">Crear mazo</string>
-    <string name="recent">Recientes</string>
-    <string name="deck_biology">Biología celular</string>
-    <string name="deck_biology_meta">12 tarjetas - Examen del viernes</string>
-    <string name="deck_android">Kotlin y Android</string>
-    <string name="deck_android_meta">8 tarjetas - Layouts, fragments y navegación</string>
-    <string name="deck_history">Historia universal</string>
-    <string name="deck_history_meta">16 tarjetas - Fechas, procesos y conceptos</string>
     <string name="account_title">Cuenta</string>
     <string name="default_initials">MF</string>
     <string name="default_profile_name">Estudiante MemoFlash</string>
@@ -96,7 +79,6 @@
     <string name="deck_delete_error">No se pudo eliminar el mazo</string>
     <string name="deck_delete_not_allowed">Solo puedes eliminar tus propios mazos</string>
     <string name="session_required">Inicia sesión para guardar mazos</string>
-    <string name="hello_blank_fragment">Crear un nuevo mazo</string>
     <string name="featured_decks">Mazos para estudiar</string>
     <string name="no_decks_yet">Todavía no hay mazos disponibles</string>
     <string name="deck_detail_title">Detalle del mazo</string>
@@ -130,6 +112,7 @@
     <string name="logout">Cerrar sesión</string>
     <string name="logout_confirmation">¿Quieres cerrar la sesión actual?</string>
     <string name="cancel">Cancelar</string>
+    <string name="number_format">%1$d</string>
 </resources>
 
 

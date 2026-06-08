@@ -10,10 +10,10 @@ activity = "1.13.0"
 constraintlayout = "2.2.1"
 navigationFragmentKtx = "2.9.8"
 navigationUiKtx = "2.9.8"
-firebaseBom = "34.13.0"
+firebaseBom = "34.14.0"
 googleServices = "4.4.4"
 coroutinesPlayServices = "1.11.0"
-gson = "2.13.2"
+gson = "2.14.0"
 recyclerview = "1.4.0"
 
 [libraries]
