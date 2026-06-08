@@ -76,6 +76,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailHeader" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDeleteDeck"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/delete_deck"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/txtDetailCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtDetailCount" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFlashcards"
         android:layout_width="0dp"
