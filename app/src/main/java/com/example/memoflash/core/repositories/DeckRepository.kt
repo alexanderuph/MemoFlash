@@ -28,12 +28,14 @@ class DeckRepository(
                     return@withContext ResponseService.Success(localDecks)
                 }
 
-                val remoteDecks = deckCollection
-                    .whereEqualTo("ownerId", userId)
-                    .get()
-                    .await()
-                    .documents
-                    .mapNotNull { it.toObject(StudyDeck::class.java) }
+                val remoteDecks = runCatching {
+                    deckCollection
+                        .whereEqualTo("ownerId", userId)
+                        .get()
+                        .await()
+                        .documents
+                        .mapNotNull { it.toObject(StudyDeck::class.java) }
+                }.getOrDefault(emptyList())
 
                 ResponseService.Success((remoteDecks + localDecks).distinctBy(StudyDeck::id))
             } catch (e: Exception) {
