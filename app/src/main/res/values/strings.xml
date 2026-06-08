@@ -127,6 +127,9 @@
     <string name="deck_answer_error">La respuesta debe tener al menos 3 caracteres</string>
     <string name="invalid_email">Escribe un correo válido</string>
     <string name="recovery_sent">Enviamos las instrucciones a %1$s</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="logout_confirmation">¿Quieres cerrar la sesión actual?</string>
+    <string name="cancel">Cancelar</string>
 </resources>
 
 
