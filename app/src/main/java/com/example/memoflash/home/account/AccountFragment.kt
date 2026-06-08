@@ -1,13 +1,16 @@
 package com.example.memoflash.home.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.memoflash.MainActivity
 import com.example.memoflash.R
 import com.example.memoflash.core.SessionStore
 import com.example.memoflash.databinding.FragmentAccountBinding
 import com.example.memoflash.onboarding.personal.model.UserProfile
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -20,12 +23,15 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAccountBinding.bind(view)
+        binding.btnLogout.setOnClickListener { confirmLogout() }
         loadUserData()
     }
 
     private fun loadUserData() {
+        binding.accountProgress.visibility = View.VISIBLE
         val currentUser = auth.currentUser
         if (currentUser == null) {
+            binding.accountProgress.visibility = View.GONE
             binding.txtProfileName.text = getString(R.string.no_session)
             binding.txtProfileUsername.text = getString(R.string.no_session_username)
             return
@@ -41,6 +47,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
             .document(currentUser.uid)
             .get()
             .addOnSuccessListener { document ->
+                binding.accountProgress.visibility = View.GONE
                 if (!document.exists()) {
                     binding.txtProfileName.text =
                         currentUser.email ?: getString(R.string.memo_user_fallback)
@@ -65,12 +72,31 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 renderProfile(profile, currentEmail)
             }
             .addOnFailureListener {
+                binding.accountProgress.visibility = View.GONE
                 Snackbar.make(
                     binding.root,
                     it.localizedMessage ?: getString(R.string.profile_load_error),
                     Snackbar.LENGTH_LONG
                 ).show()
             }
+    }
+
+    private fun confirmLogout() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.logout)
+            .setMessage(R.string.logout_confirmation)
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.logout) { _, _ -> logout() }
+            .show()
+    }
+
+    private fun logout() {
+        auth.signOut()
+        SessionStore.clear()
+        val intent = Intent(requireContext(), MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 
     private fun renderProfile(profile: UserProfile, email: String) {
