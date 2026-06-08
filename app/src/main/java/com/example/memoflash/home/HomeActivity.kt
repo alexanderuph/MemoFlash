@@ -8,7 +8,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.memoflash.R
+import com.example.memoflash.MainActivity
 import com.example.memoflash.databinding.ActivityHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -26,6 +29,17 @@ class HomeActivity : AppCompatActivity() {
         }
 
         setupNavigation()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            startActivity(
+                Intent(this, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+            )
+        }
     }
 
     private fun setupNavigation() {

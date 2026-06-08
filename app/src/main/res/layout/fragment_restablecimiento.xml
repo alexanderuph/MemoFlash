@@ -143,6 +143,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editCorreoRecuperar" />
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/recoveryProgress"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:visibility="gone"
+                app:indicatorColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/btnEnviarInstrucciones"
+                app:layout_constraintEnd_toEndOf="@id/btnEnviarInstrucciones"
+                app:layout_constraintStart_toStartOf="@id/btnEnviarInstrucciones"
+                app:layout_constraintTop_toTopOf="@id/btnEnviarInstrucciones"
+                app:trackThickness="3dp" />
+
             <TextView
                 android:id="@+id/txtVolverLogin"
                 android:layout_width="wrap_content"

@@ -9,18 +9,54 @@
         android:id="@+id/studyFragment"
         android:name="com.example.memoflash.home.study.StudyFragment"
         android:label="@string/nav_study"
-        tools:layout="@layout/fragment_study" />
+        tools:layout="@layout/fragment_study">
+        <action
+            android:id="@+id/action_studyFragment_to_deckDetailFragment"
+            app:destination="@id/deckDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/decksFragment"
         android:name="com.example.memoflash.home.decks.DecksFragment"
         android:label="@string/nav_decks"
-        tools:layout="@layout/fragment_decks" />
+        tools:layout="@layout/fragment_decks">
+        <action
+            android:id="@+id/action_decksFragment_to_deckDetailFragment"
+            app:destination="@id/deckDetailFragment" />
+        <action
+            android:id="@+id/action_decksFragment_to_addDeckFragment"
+            app:destination="@id/addDeckFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.memoflash.home.account.AccountFragment"
         android:label="@string/nav_account"
         tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/deckDetailFragment"
+        android:name="com.example.memoflash.home.detail.DeckDetailFragment"
+        android:label="@string/deck_detail_title"
+        tools:layout="@layout/fragment_deck_detail">
+        <action
+            android:id="@+id/action_deckDetailFragment_to_addDeckFragment"
+            app:destination="@id/addDeckFragment" />
+        <action
+            android:id="@+id/action_deckDetailFragment_to_studySessionFragment"
+            app:destination="@id/studySessionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addDeckFragment"
+        android:name="com.example.memoflash.home.agregar.AddDeckFragment"
+        android:label="@string/create_deck"
+        tools:layout="@layout/fragment_agregar" />
+
+    <fragment
+        android:id="@+id/studySessionFragment"
+        android:name="com.example.memoflash.home.study.StudySessionFragment"
+        android:label="@string/study_session"
+        tools:layout="@layout/fragment_study_session" />
 </navigation>
 

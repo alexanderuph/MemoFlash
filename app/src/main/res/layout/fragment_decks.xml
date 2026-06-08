@@ -1,184 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     tools:context=".home.decks.DecksFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txtDecksTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:paddingBottom="28dp">
+        android:layout_marginTop="20dp"
+        android:text="@string/decks_title"
+        android:textColor="@color/memo_navy"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/decks_title"
-            android:textColor="@color/memo_navy"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txtDecksSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/decks_subtitle"
+        android:textColor="@color/memo_muted"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtDecksTitle" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/decks_subtitle"
-            android:textColor="@color/memo_muted"
-            android:textSize="14sp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCreateDeck"
+        style="@style/MemoPrimaryButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/create_deck"
+        app:icon="@drawable/ic_upload_file"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtDecksSubtitle" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            app:cardBackgroundColor="@color/memo_navy"
-            app:cardCornerRadius="8dp">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDecks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCreateDeck"
+        tools:listitem="@layout/item_deck" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp">
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/deckProgress"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:indicatorColor="@color/memo_blue"
+        app:layout_constraintBottom_toBottomOf="@id/rvDecks"
+        app:layout_constraintEnd_toEndOf="@id/rvDecks"
+        app:layout_constraintStart_toStartOf="@id/rvDecks"
+        app:layout_constraintTop_toTopOf="@id/rvDecks" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/new_from_file"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txtEmptyDecks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_decks_yet"
+        android:textColor="@color/memo_muted"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/rvDecks"
+        app:layout_constraintEnd_toEndOf="@id/rvDecks"
+        app:layout_constraintStart_toStartOf="@id/rvDecks"
+        app:layout_constraintTop_toTopOf="@id/rvDecks" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/new_from_file_description"
-                    android:textColor="#B3FFFFFF"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/MemoPrimaryButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="14dp"
-                    android:text="@string/create_deck"
-                    app:icon="@drawable/ic_upload_file"
-                    app:iconTint="@color/white" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="@string/recent"
-            android:textColor="@color/memo_navy"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="@color/memo_blue_soft"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deck_biology"
-                    android:textColor="@color/memo_ink"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/deck_biology_meta"
-                    android:textColor="@color/memo_muted"
-                    android:textSize="13sp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="@color/memo_blue_soft"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deck_android"
-                    android:textColor="@color/memo_ink"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/deck_android_meta"
-                    android:textColor="@color/memo_muted"
-                    android:textSize="13sp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="8dp"
-            app:strokeColor="@color/memo_blue_soft"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deck_history"
-                    android:textColor="@color/memo_ink"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/deck_history_meta"
-                    android:textColor="@color/memo_muted"
-                    android:textSize="13sp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-</ScrollView>
-
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>
