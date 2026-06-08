@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/addDeckFragment"
-        android:name="com.example.memoflash.home.agregar.agregarFragment"
+        android:name="com.example.memoflash.home.agregar.AddDeckFragment"
         android:label="@string/create_deck"
         tools:layout="@layout/fragment_agregar" />
 </navigation>

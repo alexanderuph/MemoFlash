@@ -14,6 +14,7 @@ import com.example.memoflash.core.ResponseService
 import com.example.memoflash.core.model.StudyDeck
 import com.example.memoflash.databinding.FragmentDeckDetailBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
@@ -21,15 +22,20 @@ class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
     private val binding get() = _binding!!
     private val viewModel by viewModels<DeckDetailViewModel>()
     private val adapter = FlashcardsAdapter()
+    private var currentDeck: StudyDeck? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDeckDetailBinding.bind(view)
         val deckId = requireArguments().getString("deckId").orEmpty()
         binding.btnBackDetail.setOnClickListener { findNavController().navigateUp() }
+        binding.btnDeleteDeck.setOnClickListener {
+            currentDeck?.let { deck -> viewModel.deleteDeck(deck.id) }
+        }
         binding.rvFlashcards.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFlashcards.adapter = adapter
         observeDeck()
+        observeDelete()
         viewModel.loadDeck(deckId)
     }
 
@@ -51,6 +57,7 @@ class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
     }
 
     private fun renderDeck(deck: StudyDeck) {
+        currentDeck = deck
         binding.txtDetailTitle.text = deck.title
         binding.txtDetailSubject.text = deck.subject
         binding.txtDetailDescription.text = deck.description
@@ -61,6 +68,27 @@ class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
             deck.cards.size
         )
         adapter.submitList(deck.cards)
+        binding.btnDeleteDeck.visibility =
+            if (
+                deck.ownerId.isNotBlank() &&
+                deck.ownerId == FirebaseAuth.getInstance().currentUser?.uid
+            ) View.VISIBLE else View.GONE
+    }
+
+    private fun observeDelete() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.deleteState.collect { state ->
+                    binding.btnDeleteDeck.isEnabled = state !is ResponseService.Loading
+                    when (state) {
+                        is ResponseService.Success -> findNavController().navigateUp()
+                        is ResponseService.Error ->
+                            Snackbar.make(binding.root, state.error, Snackbar.LENGTH_LONG).show()
+                        ResponseService.Loading, null -> Unit
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

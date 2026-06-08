@@ -105,6 +105,26 @@
         <item quantity="one">%d tarjeta</item>
         <item quantity="other">%d tarjetas</item>
     </plurals>
+    <string name="create_deck_title">Nuevo mazo de estudio</string>
+    <string name="create_deck_subtitle">Selecciona un documento y crea la primera tarjeta. El mazo se guardará en Firebase.</string>
+    <string name="choose_document">Seleccionar archivo</string>
+    <string name="no_file_selected">Sin archivo seleccionado; también puedes crear el mazo manualmente.</string>
+    <string name="selected_document">Documento seleccionado</string>
+    <string name="manual_source">Creado manualmente</string>
+    <string name="deck_title_hint">Nombre del mazo</string>
+    <string name="deck_subject_hint">Materia o categoría</string>
+    <string name="deck_description_hint">Descripción del contenido</string>
+    <string name="first_flashcard">Primera tarjeta</string>
+    <string name="question_hint">Pregunta</string>
+    <string name="answer_hint">Respuesta</string>
+    <string name="save_deck">Guardar mazo</string>
+    <string name="deck_saved">Mazo guardado correctamente</string>
+    <string name="delete_deck">Eliminar mazo</string>
+    <string name="deck_title_error">Escribe al menos 3 caracteres</string>
+    <string name="deck_subject_error">Escribe una materia válida</string>
+    <string name="deck_description_error">La descripción debe tener al menos 10 caracteres</string>
+    <string name="deck_question_error">La pregunta debe tener al menos 5 caracteres</string>
+    <string name="deck_answer_error">La respuesta debe tener al menos 3 caracteres</string>
 </resources>
 
 
