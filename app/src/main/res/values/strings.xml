@@ -97,6 +97,14 @@
     <string name="deck_delete_not_allowed">Solo puedes eliminar tus propios mazos</string>
     <string name="session_required">Inicia sesión para guardar mazos</string>
     <string name="hello_blank_fragment">Crear un nuevo mazo</string>
+    <string name="featured_decks">Mazos para estudiar</string>
+    <string name="no_decks_yet">Todavía no hay mazos disponibles</string>
+    <string name="deck_detail_title">Detalle del mazo</string>
+    <string name="deck_source_format">Fuente: %1$s</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%d tarjeta</item>
+        <item quantity="other">%d tarjetas</item>
+    </plurals>
 </resources>
 
 
