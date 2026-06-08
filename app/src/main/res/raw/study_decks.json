@@ -1,0 +1,88 @@
+[
+  {
+    "id": "biology-cells",
+    "title": "Biología celular",
+    "subject": "Biología",
+    "description": "Conceptos esenciales de células, organelos y transporte celular.",
+    "source": "Apuntes de biología.pdf",
+    "cards": [
+      {
+        "id": "bio-1",
+        "question": "¿Cuál es la función principal de la membrana celular?",
+        "answer": "Regular el paso de sustancias entre el interior y el exterior de la célula."
+      },
+      {
+        "id": "bio-2",
+        "question": "¿Qué organelo produce la mayor parte del ATP?",
+        "answer": "La mitocondria."
+      },
+      {
+        "id": "bio-3",
+        "question": "¿Dónde se sintetizan las proteínas?",
+        "answer": "En los ribosomas."
+      }
+    ]
+  },
+  {
+    "id": "android-kotlin",
+    "title": "Kotlin y Android",
+    "subject": "Programación",
+    "description": "Repaso de fragments, navegación, ViewModel y ciclo de vida.",
+    "source": "Clase Android.txt",
+    "cards": [
+      {
+        "id": "android-1",
+        "question": "¿Para qué sirve un ViewModel?",
+        "answer": "Para conservar y administrar datos relacionados con la interfaz respetando el ciclo de vida."
+      },
+      {
+        "id": "android-2",
+        "question": "¿Qué componente permite navegar entre fragments?",
+        "answer": "Navigation Component mediante un NavController."
+      },
+      {
+        "id": "android-3",
+        "question": "¿Qué ventaja ofrece ViewBinding?",
+        "answer": "Acceso seguro a las vistas sin búsquedas manuales con findViewById."
+      }
+    ]
+  },
+  {
+    "id": "universal-history",
+    "title": "Historia universal",
+    "subject": "Historia",
+    "description": "Procesos, fechas y conceptos de la Revolución Industrial.",
+    "source": "Historia universal.docx",
+    "cards": [
+      {
+        "id": "history-1",
+        "question": "¿Dónde comenzó la Revolución Industrial?",
+        "answer": "En Gran Bretaña durante la segunda mitad del siglo XVIII."
+      },
+      {
+        "id": "history-2",
+        "question": "¿Qué fuente de energía impulsó la primera etapa industrial?",
+        "answer": "El carbón, utilizado principalmente en la máquina de vapor."
+      }
+    ]
+  },
+  {
+    "id": "study-techniques",
+    "title": "Técnicas de estudio",
+    "subject": "Aprendizaje",
+    "description": "Métodos para recordar mejor y organizar sesiones de repaso.",
+    "source": "Guía de estudio.pdf",
+    "cards": [
+      {
+        "id": "study-1",
+        "question": "¿Qué es la repetición espaciada?",
+        "answer": "Una técnica que distribuye los repasos en intervalos crecientes."
+      },
+      {
+        "id": "study-2",
+        "question": "¿Qué busca la práctica de recuperación?",
+        "answer": "Recordar activamente la información sin consultar primero el material."
+      }
+    ]
+  }
+]

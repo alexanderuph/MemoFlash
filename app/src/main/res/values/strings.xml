@@ -90,6 +90,13 @@
     <string name="nav_label_recover">Recuperar contraseña</string>
     <string name="profile_not_saved">Aún no hay perfil guardado para esta cuenta</string>
     <string name="profile_load_error">No se pudo cargar el perfil</string>
+    <string name="deck_load_error">No se pudieron cargar los mazos</string>
+    <string name="deck_not_found">No se encontró el mazo</string>
+    <string name="deck_save_error">No se pudo guardar el mazo</string>
+    <string name="deck_delete_error">No se pudo eliminar el mazo</string>
+    <string name="deck_delete_not_allowed">Solo puedes eliminar tus propios mazos</string>
+    <string name="session_required">Inicia sesión para guardar mazos</string>
+    <string name="hello_blank_fragment">Crear un nuevo mazo</string>
 </resources>
 
 
