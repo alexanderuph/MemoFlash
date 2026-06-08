@@ -1,7 +1,10 @@
 package com.example.memoflash.home.study
 
+import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -24,13 +27,31 @@ class StudyFragment : Fragment(R.layout.fragment_study) {
     private val viewModel by viewModels<DecksViewModel>()
     private val adapter = DecksAdapter(::openDeck)
 
+    private val filePicker = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        uri ?: return@registerForActivityResult
+        val currentBinding = _binding ?: return@registerForActivityResult
+        currentBinding.txtSelectedStudyFile.text = getString(
+            R.string.selected_file_format,
+            displayName(uri)
+        )
+        currentBinding.txtSelectedStudyFile.visibility = View.VISIBLE
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentStudyBinding.bind(view)
         binding.rvFeaturedDecks.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFeaturedDecks.adapter = adapter
         binding.btnUploadFile.setOnClickListener {
-            findNavController().navigate(R.id.action_studyFragment_to_addDeckFragment)
+            filePicker.launch(
+                arrayOf(
+                    "application/pdf",
+                    "text/plain",
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                )
+            )
         }
         observeDecks()
         viewModel.loadDecks()
@@ -43,18 +64,11 @@ class StudyFragment : Fragment(R.layout.fragment_study) {
                     binding.studyProgress.visibility =
                         if (state is ResponseService.Loading) View.VISIBLE else View.GONE
                     when (state) {
-                        is ResponseService.Success -> {
-                            val decks = state.data.take(4)
-                            adapter.submitList(decks)
-                            binding.txtCardsReady.text = getString(
-                                R.string.number_format,
-                                state.data.sumOf { it.cards.size }
-                            )
-                            binding.txtEmptyStudy.visibility =
-                                if (decks.isEmpty()) View.VISIBLE else View.GONE
-                        }
-                        is ResponseService.Error ->
+                        is ResponseService.Success -> renderDecks(state.data)
+                        is ResponseService.Error -> {
+                            binding.txtEmptyStudy.visibility = View.VISIBLE
                             Snackbar.make(binding.root, state.error, Snackbar.LENGTH_LONG).show()
+                        }
                         ResponseService.Loading, null -> Unit
                     }
                 }
@@ -62,17 +76,45 @@ class StudyFragment : Fragment(R.layout.fragment_study) {
         }
     }
 
+    private fun renderDecks(decks: List<StudyDeck>) {
+        adapter.submitList(decks)
+        binding.txtCardsReady.text = getString(
+            R.string.number_format,
+            decks.sumOf { it.cards.size }
+        )
+        binding.txtEmptyStudy.visibility = if (decks.isEmpty()) View.VISIBLE else View.GONE
+    }
+
     private fun openDeck(deck: StudyDeck) {
-        val arguments = Bundle().apply { putString("deckId", deck.id) }
         findNavController().navigate(
             R.id.action_studyFragment_to_deckDetailFragment,
-            arguments
+            Bundle().apply { putString(ARG_DECK_ID, deck.id) }
         )
+    }
+
+    private fun displayName(uri: Uri): String {
+        requireContext().contentResolver.query(
+            uri,
+            arrayOf(OpenableColumns.DISPLAY_NAME),
+            null,
+            null,
+            null
+        )?.use { cursor ->
+            val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            if (nameIndex >= 0 && cursor.moveToFirst()) {
+                return cursor.getString(nameIndex)
+            }
+        }
+        return getString(R.string.selected_document)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding.rvFeaturedDecks.adapter = null
         _binding = null
+    }
+
+    private companion object {
+        const val ARG_DECK_ID = "deckId"
     }
 }

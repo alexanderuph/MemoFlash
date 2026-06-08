@@ -25,6 +25,7 @@
             app:tint="@color/memo_navy" />
 
         <TextView
+            android:id="@+id/txtEditorTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -37,28 +38,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/create_deck_subtitle"
+            android:text="@string/create_manual_deck_subtitle"
             android:textColor="@color/memo_muted"
             android:textSize="14sp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChooseFile"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/editorProgress"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="18dp"
-            android:text="@string/choose_document"
-            app:icon="@drawable/ic_upload_file"
-            app:strokeColor="@color/memo_blue" />
-
-        <TextView
-            android:id="@+id/txtSelectedFile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/no_file_selected"
-            android:textColor="@color/memo_muted"
-            android:textSize="12sp" />
+            android:layout_height="4dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            app:indicatorColor="@color/memo_blue"
+            app:trackColor="@color/memo_blue_soft" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputDeckTitle"
@@ -113,10 +104,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/first_flashcard"
+            android:layout_marginTop="22dp"
+            android:text="@string/cards"
             android:textColor="@color/memo_navy"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -152,6 +143,48 @@
                 android:maxLength="300"
                 android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelCardEdit"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@string/cancel"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddCard"
+                style="@style/MemoPrimaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/add_card" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtNoCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/no_cards_added"
+            android:textColor="@color/memo_muted"
+            android:textSize="14sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEditableCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/item_editable_flashcard" />
 
         <FrameLayout
             android:layout_width="match_parent"

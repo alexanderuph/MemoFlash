@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_studyFragment_to_deckDetailFragment"
             app:destination="@id/deckDetailFragment" />
-        <action
-            android:id="@+id/action_studyFragment_to_addDeckFragment"
-            app:destination="@id/addDeckFragment" />
     </fragment>
 
     <fragment
@@ -41,12 +38,25 @@
         android:id="@+id/deckDetailFragment"
         android:name="com.example.memoflash.home.detail.DeckDetailFragment"
         android:label="@string/deck_detail_title"
-        tools:layout="@layout/fragment_deck_detail" />
+        tools:layout="@layout/fragment_deck_detail">
+        <action
+            android:id="@+id/action_deckDetailFragment_to_addDeckFragment"
+            app:destination="@id/addDeckFragment" />
+        <action
+            android:id="@+id/action_deckDetailFragment_to_studySessionFragment"
+            app:destination="@id/studySessionFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/addDeckFragment"
         android:name="com.example.memoflash.home.agregar.AddDeckFragment"
         android:label="@string/create_deck"
         tools:layout="@layout/fragment_agregar" />
+
+    <fragment
+        android:id="@+id/studySessionFragment"
+        android:name="com.example.memoflash.home.study.StudySessionFragment"
+        android:label="@string/study_session"
+        tools:layout="@layout/fragment_study_session" />
 </navigation>
 
