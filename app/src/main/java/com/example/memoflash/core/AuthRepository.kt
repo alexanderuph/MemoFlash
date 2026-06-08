@@ -62,4 +62,18 @@ class AuthRepository : Authentication {
             ResponseService.Error("Error inesperado. Intenta de nuevo")
         }
     }
+
+    override suspend fun requestPasswordReset(email: String): ResponseService<Unit> =
+        withContext(Dispatchers.IO) {
+            try {
+                auth.sendPasswordResetEmail(email).await()
+                ResponseService.Success(Unit)
+            } catch (e: FirebaseAuthInvalidCredentialsException) {
+                ResponseService.Error("El correo no tiene un formato válido")
+            } catch (e: FirebaseAuthException) {
+                ResponseService.Error(e.localizedMessage ?: "No se pudo enviar el correo")
+            } catch (e: Exception) {
+                ResponseService.Error("No se pudo enviar el correo. Intenta de nuevo")
+            }
+        }
 }

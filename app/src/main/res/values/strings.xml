@@ -125,6 +125,8 @@
     <string name="deck_description_error">La descripción debe tener al menos 10 caracteres</string>
     <string name="deck_question_error">La pregunta debe tener al menos 5 caracteres</string>
     <string name="deck_answer_error">La respuesta debe tener al menos 3 caracteres</string>
+    <string name="invalid_email">Escribe un correo válido</string>
+    <string name="recovery_sent">Enviamos las instrucciones a %1$s</string>
 </resources>
 
 
