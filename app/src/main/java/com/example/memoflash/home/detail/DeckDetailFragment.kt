@@ -29,6 +29,22 @@ class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
         _binding = FragmentDeckDetailBinding.bind(view)
         val deckId = requireArguments().getString("deckId").orEmpty()
         binding.btnBackDetail.setOnClickListener { findNavController().navigateUp() }
+        binding.btnEditDeck.setOnClickListener {
+            currentDeck?.let { deck ->
+                findNavController().navigate(
+                    R.id.action_deckDetailFragment_to_addDeckFragment,
+                    Bundle().apply { putString("deckId", deck.id) }
+                )
+            }
+        }
+        binding.btnStudyDeck.setOnClickListener {
+            currentDeck?.let { deck ->
+                findNavController().navigate(
+                    R.id.action_deckDetailFragment_to_studySessionFragment,
+                    Bundle().apply { putString("deckId", deck.id) }
+                )
+            }
+        }
         binding.btnDeleteDeck.setOnClickListener {
             currentDeck?.let { deck -> viewModel.deleteDeck(deck.id) }
         }
@@ -61,6 +77,8 @@ class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
         binding.txtDetailTitle.text = deck.title
         binding.txtDetailSubject.text = deck.subject
         binding.txtDetailDescription.text = deck.description
+        binding.txtDetailSource.visibility =
+            if (deck.source.isBlank()) View.GONE else View.VISIBLE
         binding.txtDetailSource.text = getString(R.string.deck_source_format, deck.source)
         binding.txtDetailCount.text = resources.getQuantityString(
             R.plurals.deck_card_count,
@@ -73,6 +91,7 @@ class DeckDetailFragment : Fragment(R.layout.fragment_deck_detail) {
                 deck.ownerId.isNotBlank() &&
                 deck.ownerId == FirebaseAuth.getInstance().currentUser?.uid
             ) View.VISIBLE else View.GONE
+        binding.btnEditDeck.visibility = binding.btnDeleteDeck.visibility
     }
 
     private fun observeDelete() {

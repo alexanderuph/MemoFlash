@@ -3,7 +3,6 @@ package com.example.memoflash.core.repositories
 import android.content.Context
 import com.example.memoflash.R
 import com.example.memoflash.core.ResponseService
-import com.example.memoflash.core.data.DeckJsonParser
 import com.example.memoflash.core.model.StudyDeck
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,23 +20,17 @@ class DeckRepository(
 
     override suspend fun getDecks(): ResponseService<List<StudyDeck>> =
         withContext(Dispatchers.IO) {
+            val userId = auth.currentUser?.uid
+                ?: return@withContext ResponseService.Success(emptyList())
             try {
-                val localDecks = loadLocalDecks()
-                val userId = auth.currentUser?.uid
-                if (userId == null) {
-                    return@withContext ResponseService.Success(localDecks)
-                }
-
-                val remoteDecks = runCatching {
-                    deckCollection
-                        .whereEqualTo("ownerId", userId)
-                        .get()
-                        .await()
-                        .documents
-                        .mapNotNull { it.toObject(StudyDeck::class.java) }
-                }.getOrDefault(emptyList())
-
-                ResponseService.Success((remoteDecks + localDecks).distinctBy(StudyDeck::id))
+                val decks = deckCollection
+                    .whereEqualTo("ownerId", userId)
+                    .get()
+                    .await()
+                    .documents
+                    .mapNotNull { it.toObject(StudyDeck::class.java) }
+                    .sortedByDescending(StudyDeck::createdAt)
+                ResponseService.Success(decks)
             } catch (e: Exception) {
                 ResponseService.Error(
                     e.localizedMessage ?: context.getString(R.string.deck_load_error)
@@ -48,9 +41,6 @@ class DeckRepository(
     override suspend fun getDeck(deckId: String): ResponseService<StudyDeck> =
         withContext(Dispatchers.IO) {
             try {
-                loadLocalDecks().firstOrNull { it.id == deckId }?.let {
-                    return@withContext ResponseService.Success(it)
-                }
                 val document = deckCollection.document(deckId).get().await()
                 val deck = document.toObject(StudyDeck::class.java)
                     ?: return@withContext ResponseService.Error(
@@ -104,10 +94,4 @@ class DeckRepository(
             }
         }
 
-    private fun loadLocalDecks(): List<StudyDeck> {
-        val json = context.resources.openRawResource(R.raw.study_decks)
-            .bufferedReader()
-            .use { it.readText() }
-        return DeckJsonParser.parse(json)
-    }
 }

@@ -41,6 +41,17 @@
             android:layout_marginTop="14dp"
             android:text="@string/upload_file"
             app:icon="@drawable/ic_upload_file" />
+
+        <TextView
+            android:id="@+id/txtSelectedStudyFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="#B3FFFFFF"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:text="Archivo seleccionado: apuntes.pdf"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -69,7 +80,7 @@
                 android:id="@+id/txtCardsReady"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cards_ready_count"
+                android:text="@string/zero_count"
                 android:textColor="@color/memo_blue"
                 android:textSize="24sp"
                 android:textStyle="bold" />

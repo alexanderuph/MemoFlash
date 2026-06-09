@@ -13,7 +13,6 @@ navigationUiKtx = "2.9.8"
 firebaseBom = "34.14.0"
 googleServices = "4.4.4"
 coroutinesPlayServices = "1.11.0"
-gson = "2.14.0"
 recyclerview = "1.4.0"
 
 [libraries]
@@ -31,7 +30,6 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
 coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutinesPlayServices" }
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]

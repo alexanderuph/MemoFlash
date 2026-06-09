@@ -12,11 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.memoflash.core.FragmentCommunicator
 import com.example.memoflash.core.ResponseService
-import com.example.memoflash.core.SessionStore
 import com.example.memoflash.databinding.FragmentRegistroDatosBinding
 import com.example.memoflash.home.HomeActivity
 import com.example.memoflash.onboarding.personal.PersonalInfoViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -86,7 +86,15 @@ class fragment_registro_datos : Fragment(R.layout.fragment_registro_datos) {
         }
 
         binding.btnFinalizarRegistro.setOnClickListener {
-            val uid = SessionStore.currentUser?.id ?: "memo_user_local"
+            val uid = FirebaseAuth.getInstance().currentUser?.uid
+            if (uid == null) {
+                Snackbar.make(
+                    binding.root,
+                    getString(R.string.session_expired),
+                    Snackbar.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
             viewModel.saveProfile(
                 uid = uid,
                 firstName = binding.editNombreInfo.editText?.text?.toString()?.trim().orEmpty(),
