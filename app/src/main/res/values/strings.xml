@@ -68,6 +68,7 @@
     <string name="deck_delete_error">No se pudo eliminar el mazo</string>
     <string name="deck_delete_not_allowed">Solo puedes eliminar tus propios mazos</string>
     <string name="session_required">Inicia sesión para guardar mazos</string>
+    <string name="session_expired">Tu sesión terminó. Inicia sesión nuevamente.</string>
     <string name="featured_decks">Mazos para estudiar</string>
     <string name="no_decks_yet">Todavía no hay mazos disponibles</string>
     <string name="deck_detail_title">Detalle del mazo</string>
